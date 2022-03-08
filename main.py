@@ -16,6 +16,6 @@ def hello():
     context = {
         "user_ip":user_ip,
         "todos":todos
-    } # Pasaremos contexto con un diccionario
-    return render_template('hello.html',context=context) # Responder al usuario con su IP en un template HTML
+    } # Pasaremos contexto con varibles en vez de un diccionario, usamos ** para hacer de cada llave/valor una variable :D
+    return render_template('hello.html',**context) # Responder al usuario con su IP en un template HTML
 

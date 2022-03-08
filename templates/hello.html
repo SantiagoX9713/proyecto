@@ -7,9 +7,9 @@
     <title>Hello User</title>
 </head>
 <body>
-    <!-- Abrimos el diccionario y accedemos a sus valores mediente la llave  -->
-    {% if context.user_ip%} 
-    <h1>Tu IP es {{context.user_ip}}</h1> <!-- Tomamos user_ip y lo mostramos en el template -->
+    <!-- Ahora accedemos normalmente a las variables -->
+    {% if user_ip%} 
+    <h1>Tu IP es {{user_ip}}</h1> <!-- Tomamos user_ip y lo mostramos en el template -->
     {% else %}
     <a href="{{url_for('index')}}">Ir al Inicio</a>
     {% endif %}
