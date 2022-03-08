@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% import 'macros.html' as macros %}
 {% block title %} <!-- Bloques de contenido para poder mandarlo a un template padre -->
     {{super()}}
     Bienvenido
@@ -14,7 +14,7 @@
 {% endif %}
     <ol>
         {% for todo in todos %} <!-- Ciclos -->
-        <li>{{todo}}</li>
+        {{ macros.render_todo(todo) }}
         {% endfor %}
     </ol>
 {% endblock %}   
