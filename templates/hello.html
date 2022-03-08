@@ -7,6 +7,10 @@
     <title>Hello User</title>
 </head>
 <body>
-     <h1>Tu IP es {{user_ip}}</h1> <!-- Tomamos user_ip y lo mostramos en el template -->
+    {% if user_ip%}
+    <h1>Tu IP es {{user_ip}}</h1> <!-- Tomamos user_ip y lo mostramos en el template -->
+    {% else %}
+    <a href="{{url_for('index')}}">Ir al Inicio</a>
+    {% endif %}
 </body>
 </html>
