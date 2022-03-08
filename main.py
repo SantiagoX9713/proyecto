@@ -1,4 +1,4 @@
-from flask import Flask, request,make_response,redirect # Importar Flask para poder trabajar con el
+from flask import Flask, request,make_response,redirect,render_template # Importar Flask para poder trabajar con el
 
 app = Flask(__name__) #Crear la app
 
@@ -13,5 +13,5 @@ def index():
 @app.route('/hello') #Primera ruta (Home)
 def hello():
     user_ip = request.cookies.get('user_ip') #Leemos la cookie y obtenemos la IP
-    return 'Tu IP es {}'.format(user_ip) # Responder al usuario con su IP
+    return render_template('hello.html',user_ip=user_ip) # Responder al usuario con su IP en un template HTML
 
