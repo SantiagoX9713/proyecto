@@ -1,11 +1,12 @@
 {% extends 'base.html' %}
 {% import 'macros.html' as macros %}
-{% block title %} <!-- Bloques de contenido para poder mandarlo a un template padre -->
+<!-- Bloques de contenido para poder mandarlo a un template padre -->
+{% block title %}
     {{super()}}
     Bienvenido
 {% endblock %}
-
-{% block content %} <!-- Bloques de contenido para poder mandarlo a un template padre -->
+<!-- Bloques de contenido para poder mandarlo a un template padre -->
+{% block content %}
 <!-- Ahora accedemos normalmente a las variables -->
 {% if user_ip%} <!-- Estructuras de control -->
 <h1>Tu IP es {{user_ip}}</h1> <!-- Tomamos user_ip y lo mostramos en el template -->
