@@ -1,7 +1,20 @@
+from ensurepip import bootstrap
 from flask import Flask, request,make_response,redirect,render_template # Importar Flask para poder trabajar con el
-
+from flask_bootstrap import Bootstrap
 app = Flask(__name__) #Crear la app
+bootstrap = Bootstrap(app)
 todos = ['TODO','TODO 1','TODO 2']
+
+@app.errorhandler(404)
+def not_found(error):
+    return render_template('404.html',error=error)
+
+
+@app.errorhandler(500)
+def not_found(error):
+    return render_template('500.html',error=error)
+
+
 @app.route('/') #Entrada a la app
 def index():
     user_ip = request.remote_addr #Obtener la IP del Usuario
