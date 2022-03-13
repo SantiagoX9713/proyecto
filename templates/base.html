@@ -1,22 +1,19 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Bloques de contenido para poder recibir de un template hijo -->
+{% extends 'bootstrap/base.html' %}
+
+{% block head %}
+    {{ super() }}
+
     <title>
-        {% block title %}
-            Flask Platzi | 
-        {% endblock %}
+        {% block title %}Flask Platzi |{% endblock %}
     </title>
-    <link rel="stylesheet" href="{{url_for('static',filename='css/main.css')}}">
-</head>
-<body>
-    <header>
-        {% include 'navbar.html' %}
-    </header>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css')}}">
+{% endblock %}
+
+{% block body %}
+    {% block navbar %}
+    {% include 'navbar.html' %}
+    {% endblock %}
+
     {% block content %}
     {% endblock %}
-</body>
-</html>
+{% endblock %}

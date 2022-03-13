@@ -2,20 +2,19 @@
 {% import 'macros.html' as macros %}
 <!-- Bloques de contenido para poder mandarlo a un template padre -->
 {% block title %}
-    {{super()}}
-    Bienvenido
-{% endblock %}
+    {{super()}}Bienvenido
+    {% endblock %}
 <!-- Bloques de contenido para poder mandarlo a un template padre -->
 {% block content %}
-<!-- Ahora accedemos normalmente a las variables -->
-{% if user_ip%} <!-- Estructuras de control -->
-<h1>Tu IP es {{user_ip}}</h1> <!-- Tomamos user_ip y lo mostramos en el template -->
-{% else %}
-<a href="{{url_for('index')}}">Ir al Inicio</a>
-{% endif %}
-    <ol>
-        {% for todo in todos %} <!-- Ciclos -->
-        {{ macros.render_todo(todo) }}
-        {% endfor %}
-    </ol>
+    <!-- Ahora accedemos normalmente a las variables -->
+    {% if user_ip%} <!-- Estructuras de control -->
+    <h1>Tu IP es {{user_ip}}</h1> <!-- Tomamos user_ip y lo mostramos en el template -->
+    {% else %}
+    <a href="{{url_for('index')}}">Ir al Inicio</a>
+    {% endif %}
+        <ol>
+            {% for todo in todos %} <!-- Ciclos -->
+            {{ macros.render_todo(todo) }}
+            {% endfor %}
+        </ol>
 {% endblock %}   
