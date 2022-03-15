@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% import 'macros.html' as macros %}
+{% import 'bootstrap/wtf.html' as wtf %}
 <!-- Bloques de contenido para poder mandarlo a un template padre -->
 {% block title %}
     {{super()}}Bienvenido
@@ -17,4 +18,14 @@
             {{ macros.render_todo(todo) }}
             {% endfor %}
         </ol>
+    <div class="container">
+        <!-- <form action="{{url_for('hello')}}" method="POST">
+            {{login_form.username.label}}
+            {{login_form.username}}
+            {{login_form.password.label}}
+            {{login_form.password}}
+            {{login_form.submit}}
+        </form> -->
+        {{wtf.quick_form(login_form)}}
+    </div>
 {% endblock %}   
