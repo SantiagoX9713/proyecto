@@ -7,9 +7,12 @@
     {% endblock %}
 <!-- Bloques de contenido para poder mandarlo a un template padre -->
 {% block content %}
+    {% if username %}
+        <h1>Bienvenido {{username | capitalize}}</h1>
+    {% endif %}
     <!-- Ahora accedemos normalmente a las variables -->
     {% if user_ip%} <!-- Estructuras de control -->
-    <h1>Tu IP es {{user_ip}}</h1> <!-- Tomamos user_ip y lo mostramos en el template -->
+    <h3>Tu IP es {{user_ip}}</h3> <!-- Tomamos user_ip y lo mostramos en el template -->
     {% else %}
     <a href="{{url_for('index')}}">Ir al Inicio</a>
     {% endif %}
