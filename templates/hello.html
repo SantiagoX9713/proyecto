@@ -7,6 +7,7 @@
     {% endblock %}
 <!-- Bloques de contenido para poder mandarlo a un template padre -->
 {% block content %}
+    <div class="container">
     {% if username %}
         <h1>Bienvenido {{username | capitalize}}</h1>
     {% endif %}
@@ -21,6 +22,7 @@
             {{ macros.render_todo(todo) }}
             {% endfor %}
         </ol>
+    </div>
     <div class="container">
         <!-- <form action="{{url_for('hello')}}" method="POST">
             {{login_form.username.label}}

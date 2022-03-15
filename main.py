@@ -1,6 +1,6 @@
 from crypt import methods
 from ensurepip import bootstrap
-from flask import Flask, request,make_response,redirect,render_template,session,url_for # Importar Flask para poder trabajar con el
+from flask import Flask, flash, request,make_response,redirect,render_template,session,url_for # Importar Flask para poder trabajar con el
 from flask_bootstrap import Bootstrap
 from flask_wtf import FlaskForm
 from wtforms.fields import StringField, PasswordField, SubmitField
@@ -50,6 +50,7 @@ def hello():
     if login_form.validate_on_submit():
         username = login_form.username.data
         session['username'] = username
+        flash('Usuario guardado exitosamente!')
 
         return redirect(url_for('index'))
     
