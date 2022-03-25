@@ -42,5 +42,5 @@ class MainTest(TestCase):
         self.assert200(response)
 
     def test_auth_login_template(self):
-        response = self.client.get(url_for('auth.login'))
-        self.assertTemplateUsed(response,'login.html')
+        self.client.get(url_for('auth.login'))
+        self.assertTemplateUsed('login.html')
