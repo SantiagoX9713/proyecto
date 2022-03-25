@@ -5,9 +5,10 @@ from flask_bootstrap import Bootstrap
 from flask_wtf import FlaskForm
 from wtforms.fields import StringField, PasswordField, SubmitField
 from wtforms.validators import DataRequired
-app = Flask(__name__) #Crear la app
-bootstrap = Bootstrap(app)
-app.config['SECRET_KEY'] = 'SUPER SECRETO'
+import unittest
+from app import create_app
+
+app = create_app() #Crear la app
 
 todos = ['TODO','TODO 1','TODO 2']
 
@@ -16,6 +17,13 @@ class LoginForm(FlaskForm):
     username = StringField('Nombre de Usuario',validators=[DataRequired()])
     password = PasswordField('Password',validators=[DataRequired()])
     submit = SubmitField('Enviar')
+
+
+@app.cli.command()
+def test():
+    tests = unittest.TestLoader().discover('tests')
+    unittest.TextTestRunner().run(tests)
+
 
 @app.errorhandler(404)
 def not_found(error):
