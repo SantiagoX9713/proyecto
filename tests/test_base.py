@@ -1,3 +1,4 @@
+from http import client
 from flask_testing import TestCase
 from app import auth
 from main import app
@@ -25,13 +26,8 @@ class MainTest(TestCase):
         self.assert200(response)
 
     def test_hello_post(self):
-        fake_form = {
-            'username': 'fake',
-            'password': 'fake-password'
-        }
-        response = self.client.post(url_for('hello'), data=fake_form)
-
-        self.assertRedirects(response, url_for('index'))
+        response = self.client.post(url_for('hello'))
+        self.assertTrue(response.status_code, 405)
 
 
     def test_auth_blueprint_exists(self):
@@ -44,3 +40,11 @@ class MainTest(TestCase):
     def test_auth_login_template(self):
         self.client.get(url_for('auth.login'))
         self.assertTemplateUsed('login.html')
+
+    def test_auth_login_post(self):
+        fake_form = {
+            'username':'santiago',
+            'password':'santiago'
+        }
+        response = self.client.post(url_for('auth.login'),data=fake_form)
+        self.assertRedirects(response,url_for('index'))

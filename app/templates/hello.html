@@ -23,14 +23,4 @@
             {% endfor %}
         </ol>
     </div>
-    <div class="container">
-        <!-- <form action="{{url_for('hello')}}" method="POST">
-            {{login_form.username.label}}
-            {{login_form.username}}
-            {{login_form.password.label}}
-            {{login_form.password}}
-            {{login_form.submit}}
-        </form> -->
-        {{wtf.quick_form(login_form)}}
-    </div>
 {% endblock %}   

@@ -33,24 +33,15 @@ def index():
     return response
 
 
-@app.route('/hello',methods=['GET','POST']) #Primera ruta (Home)
+@app.route('/hello',methods=['GET']) #Primera ruta (Home)
 def hello():
     user_ip = session.get('user_ip') #Leemos la session y obtenemos la IP
-    login_form = LoginForm()
     username =  session.get('username')
     context = {
         'user_ip':user_ip,
         'todos':todos,
-        'login_form': login_form,
         'username': username
     } # Pasaremos contexto con varibles en vez de un diccionario, usamos ** para hacer de cada llave/valor una variable :D
-    
-    if login_form.validate_on_submit():
-        username = login_form.username.data
-        session['username'] = username
-        flash('Usuario guardado exitosamente!')
-
-        return redirect(url_for('index'))
-    
+  
     return render_template('hello.html',**context) # Responder al usuario con su IP en un template HTML
 
