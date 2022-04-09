@@ -1,6 +1,7 @@
+import unittest
 from ensurepip import bootstrap
 from flask import flash, request,make_response,redirect,render_template,session,url_for # Importar Flask para poder trabajar con el
-import unittest
+from flask_login import login_required
 from app import create_app
 from app.forms import LoginForm
 from app.firebase_service import get_users,get_todos
@@ -33,6 +34,8 @@ def index():
 
 
 @app.route('/hello',methods=['GET']) #Primera ruta (Home)
+# Protejemos la ruta con LoginRequired
+@login_required
 def hello():
     user_ip = session.get('user_ip') #Leemos la session y obtenemos la IP
     username =  session.get('username')
