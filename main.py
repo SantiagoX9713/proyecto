@@ -3,7 +3,7 @@ from flask import flash, request,make_response,redirect,render_template,session,
 import unittest
 from app import create_app
 from app.forms import LoginForm
-
+from app.firebase_service import get_users
 
 app = create_app() #Crear la app
 
@@ -42,6 +42,12 @@ def hello():
         'todos':todos,
         'username': username
     } # Pasaremos contexto con varibles en vez de un diccionario, usamos ** para hacer de cada llave/valor una variable :D
+    users = get_users()
+
+    for user in users:
+        print(user.id)
+        print(user.to_dict()['password'])
+        
   
     return render_template('hello.html',**context) # Responder al usuario con su IP en un template HTML
 
