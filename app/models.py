@@ -3,7 +3,7 @@ from .firebase_service import get_user
 
 class UserData:
     def __init__(self, username, password):
-        self.usermane = username
+        self.username = username
         self.password = password
 
 
