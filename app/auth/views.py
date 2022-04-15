@@ -1,5 +1,5 @@
 from flask import render_template,flash,redirect,url_for,session
-from flask_login import login_user
+from flask_login import login_user, login_required, logout_user
 from app.forms import LoginForm
 from app.firebase_service import get_user
 from app.models import UserData, UserModel
@@ -33,3 +33,12 @@ def login():
         return redirect(url_for('index'))
    
     return render_template('login.html',**context)
+
+
+# Logout, es muy sencillo, solo debe de estar dentro de login_required y darle la ruta clásica de logput
+@auth.route('logout')
+@login_required
+def logout():
+    logout_user()
+    flash('Regresa pronto')
+    return redirect(url_for('auth.login'))

@@ -20,7 +20,10 @@
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li><a href="{{ url_for('index') }}">Inicio</a></li>
-                <li><a href="https://platzi.com" target="_blank">Platzi</a></li>
+                <!-- Aquí checamos que esté logeado el usuario para mostrarle el logout -->
+                {% if current_user.is_authenticated %}
+                   <li><a href="{{url_for('auth.logout')}}">Logout</a></li> 
+                {% endif %}    
             </ul>
         </div>
     </div>
