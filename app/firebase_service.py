@@ -10,14 +10,14 @@ firebase_admin .initialize_app(credential)
 db = firestore.client()
 
 # Primera función para obtener colecciones de Firestore
-# Para obtener el usuario
-def get_users():
-    return db.collection('users').get()
-
-
 def get_user(user_id):
     return db.collection('users').document(user_id).get()
 
+
+# Crear docuemento users
+def user_put(user_data):
+    user_ref = db.collection('users').document(user_data.username)
+    user_ref.set({'password': user_data.password})
 
 # Para obtener los todos del usuario user_id
 def get_todos(user_id):

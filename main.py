@@ -4,7 +4,7 @@ from flask import flash, request,make_response,redirect,render_template,session,
 from flask_login import current_user, login_required
 from app import create_app
 from app.forms import LoginForm
-from app.firebase_service import get_users,get_todos
+from app.firebase_service import get_todos
 
 app = create_app() #Crear la app
 
