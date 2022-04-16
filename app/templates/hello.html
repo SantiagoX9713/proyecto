@@ -17,10 +17,14 @@
     {% else %}
     <a href="{{url_for('index')}}">Ir al Inicio</a>
     {% endif %}
-        <ol>
+    <div class="container">
+        <h2>Crar una tarea</h2>
+        {{wtf.quick_form(todo_form)}}
+    </div>
+        <ul>
             {% for todo in todos %} <!-- Ciclos -->
             {{ macros.render_todo(todo) }}
             {% endfor %}
-        </ol>
+        </ul>
     </div>
 {% endblock %}   

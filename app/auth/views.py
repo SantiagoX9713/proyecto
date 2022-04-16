@@ -3,7 +3,7 @@ from flask import render_template,flash,redirect,url_for,session
 from flask_login import login_user, login_required, logout_user
 from werkzeug.security import generate_password_hash, check_password_hash
 from app.forms import LoginForm, SignUp
-from app.firebase_service import get_user, user_put
+from app.firebase_service import get_user, put_user
 from app.models import UserData, UserModel
 from . import auth
 
@@ -61,7 +61,7 @@ def signup():
             # Generamos un hash y se lo pasamos a la db
             password_hash = generate_password_hash(password)
             user_data = UserData(username,password_hash)
-            user_put(user_data)
+            put_user(user_data)
             user = UserModel(user_data)
             login_user(user)
             flash('Bienvenido')

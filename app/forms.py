@@ -14,3 +14,9 @@ class SignUp(FlaskForm):
     password = PasswordField('Password',validators=[DataRequired(), InputRequired(),EqualTo('password')])
     password_repeat = PasswordField('Repite tu Password',validators=[DataRequired(),InputRequired()])
     submit = SubmitField('Enviar')
+
+
+# Creamos una nueva forma para agregar nuevos todos :D
+class Todo(FlaskForm):
+    description = StringField('Descripción', validators=[DataRequired()])
+    submit = SubmitField('Guardar')

@@ -15,7 +15,7 @@ def get_user(user_id):
 
 
 # Crear docuemento users
-def user_put(user_data):
+def put_user(user_data):
     user_ref = db.collection('users').document(user_data.username)
     user_ref.set({'password': user_data.password})
 
@@ -24,3 +24,9 @@ def get_todos(user_id):
     return db.collection('users').document(user_id).collection('todos').get()
 # collection() para saber a que coleccion entrar y después obtener
 # los documentos todos y con get() traemos toda la colección
+
+# Recimos los datos para después pasarlo a la db
+def put_todo(user_id, description):
+    todos_collection_ref = db.collection('users').document(user_id).collection('todos')
+    # Datazo: para crear un documento y no poner atención al id es con add, de lo contrario usamos set como en la línea 19
+    todos_collection_ref.add({'description': description})
