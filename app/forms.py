@@ -20,3 +20,7 @@ class SignUp(FlaskForm):
 class Todo(FlaskForm):
     description = StringField('Descripción', validators=[DataRequired()])
     submit = SubmitField('Guardar')
+
+
+class DeleteTodoForm(FlaskForm):
+    submit = SubmitField('Borrar')
