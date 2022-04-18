@@ -3,8 +3,8 @@ from ensurepip import bootstrap
 from flask import flash, request,make_response,redirect,render_template,session,url_for # Importar Flask para poder trabajar con el
 from flask_login import current_user, login_required
 from app import create_app
-from app.forms import Todo, DeleteTodoForm
-from app.firebase_service import get_todos, put_todo, delete_todo
+from app.forms import Todo, DeleteTodoForm, UpdateTodoForm
+from app.firebase_service import get_todos, put_todo, delete_todo, update_todo
 
 app = create_app() #Crear la app
 
@@ -62,3 +62,11 @@ def delete(todo_id):
     delete_todo(username, todo_id)
     
     return redirect(url_for('hello'))
+
+
+@app.route('/todos/update/<todo_id>/<done>', methods=['POST'])
+def update(todo_id, done):
+    user_id = current_user.id
+    update_todo(user_id, todo_id, done)
+    
+    return redirect(url_for('hello  '))
