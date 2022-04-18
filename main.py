@@ -41,12 +41,14 @@ def hello():
     username =  current_user.id
     todo_form = Todo()
     delete_form = DeleteTodoForm()
+    update_form = UpdateTodoForm()
     context = {
         'user_ip':user_ip,
         'todos':get_todos(username),
         'username': username,
         'todo_form': todo_form,
-        'delete_form': delete_form
+        'delete_form': delete_form,
+        'update_form': update_form
     } # Pasaremos contexto con varibles en vez de un diccionario, usamos ** para hacer de cada llave/valor una variable :D
     # Cuando recibamos el form le pasamos la descripción a put_todo
     if todo_form.is_submitted():
@@ -64,9 +66,9 @@ def delete(todo_id):
     return redirect(url_for('hello'))
 
 
-@app.route('/todos/update/<todo_id>/<done>', methods=['POST'])
+@app.route('/todos/update/<todo_id>/<int:done>', methods=['POST'])
 def update(todo_id, done):
-    user_id = current_user.id
-    update_todo(user_id, todo_id, done)
+    username = current_user.id
+    update_todo(username, todo_id, done)
     
-    return redirect(url_for('hello  '))
+    return redirect(url_for('hello'))

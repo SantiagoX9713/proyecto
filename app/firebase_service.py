@@ -38,8 +38,9 @@ def delete_todo(user_id, todo_id):
     todo_ref.delete()
 
 def update_todo(user_id, todo_id, done):
+    todo_done = not bool(done)
     todo_ref = _get_ref(user_id, todo_id)
-    todo_ref.update()
+    todo_ref.update({'done': todo_done})
 
 
 def _get_ref(user_id, todo_id):
