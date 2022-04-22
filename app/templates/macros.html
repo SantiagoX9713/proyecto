@@ -8,11 +8,14 @@
             To do
         {% endif %}</span>
         Descripción: {{ todo.to_dict().description }}
-        <button type="button" class="btn btn-light">
-            {{ wtf.quick_form(delete_form, action=url_for('delete', todo_id=todo.id)) }}
-        </button>
-        <button type="button" class="btn btn-light">
-            {{ wtf.quick_form(update_form, action=url_for('update', todo_id=todo.id, done=todo.to_dict().done)) }}
-        </button>
+        <div class="btn-group" role="group" aria-label="...">
+            <button type="button" class="btn btn-default">
+                {{ wtf.quick_form(delete_form, action=url_for('delete', todo_id=todo.id)) }}
+            </button>
+            <button type="button" class="btn btn-default">
+                <!-- Ejemplo de como no declarar el "formulario" para actualizar -->
+                <a href="{{ url_for('update', todo_id= todo.id, done=todo.to_dict().done) }}" class="btn d-inline-block btn-success">Update</a>
+            </button>
+        </div>
     </li>
 {% endmacro %}

@@ -3,7 +3,7 @@ from ensurepip import bootstrap
 from flask import flash, request,make_response,redirect,render_template,session,url_for # Importar Flask para poder trabajar con el
 from flask_login import current_user, login_required
 from app import create_app
-from app.forms import Todo, DeleteTodoForm, UpdateTodoForm
+from app.forms import Todo, DeleteTodoForm
 from app.firebase_service import get_todos, put_todo, delete_todo, update_todo
 
 app = create_app() #Crear la app
@@ -25,6 +25,20 @@ def not_found(error):
     return render_template('500.html',error=error)
 
 
+def user_advance(user_todos):
+    advance = 0
+    for i in user_todos:
+        todo = i.to_dict()
+        if todo["done"]:
+            advance += 1
+    print(advance)
+    if advance == 0:
+        return advance
+    else:
+        advance = (100 / len(user_todos)) * advance
+    return round(advance, 2)
+
+
 @app.route('/') #Entrada a la app
 def index():
     #user_ip = request.remote_addr #Obtener la IP del Usuario
@@ -40,19 +54,17 @@ def home():
     #user_ip = session.get('user_ip') #Leemos la session y obtenemos la IP
     username =  current_user.id
     user_todos = get_todos(username)
-    avance = len(user_todos)
+    advance = user_advance(user_todos)
     todo_form = Todo()
     delete_form = DeleteTodoForm()
-    update_form = UpdateTodoForm()
     context = {
         #'user_ip':user_ip,
         'todos': user_todos,
-        'avance': avance,
+        'advance': advance,
         'username': username,
         'todo_form': todo_form,
-        'delete_form': delete_form,
-        'update_form': update_form
-    } # Pasaremos contexto con varibles en vez de un diccionario, usamos ** para hacer de cada llave/valor una variable :D
+        'delete_form': delete_form
+        } # Pasaremos contexto con varibles en vez de un diccionario, usamos ** para hacer de cada llave/valor una variable :D
     # Cuando recibamos el form le pasamos la descripción a put_todo
     if todo_form.is_submitted():
         put_todo(username,todo_form.description.data)
@@ -69,7 +81,7 @@ def delete(todo_id):
     return redirect(url_for('home'))
 
 
-@app.route('/todos/update/<todo_id>/<int:done>', methods=['POST'])
+@app.route('/todos/update/<todo_id>/<int:done>', methods=['GET','POST'])
 def update(todo_id, done):
     username = current_user.id
     update_todo(username, todo_id, done)
