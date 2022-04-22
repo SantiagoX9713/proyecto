@@ -27,23 +27,23 @@ def not_found(error):
 
 @app.route('/') #Entrada a la app
 def index():
-    user_ip = request.remote_addr #Obtener la IP del Usuario
-    response = make_response(redirect('/hello')) # Respuesta y redirección a Hello
-    session['user_ip'] = user_ip # Mandamos un session con la IP
+    #user_ip = request.remote_addr #Obtener la IP del Usuario
+    response = make_response(redirect('/home')) # Respuesta y redirección a home
+    #session['user_ip'] = user_ip # Mandamos un session con la IP
     return response
 
 
-@app.route('/hello',methods=['GET', 'POST']) #Primera ruta (Home)
+@app.route('/home',methods=['GET', 'POST']) #Primera ruta (Home)
 # Protejemos la ruta con LoginRequired
 @login_required
-def hello():
-    user_ip = session.get('user_ip') #Leemos la session y obtenemos la IP
+def home():
+    #user_ip = session.get('user_ip') #Leemos la session y obtenemos la IP
     username =  current_user.id
     todo_form = Todo()
     delete_form = DeleteTodoForm()
     update_form = UpdateTodoForm()
     context = {
-        'user_ip':user_ip,
+        #'user_ip':user_ip,
         'todos':get_todos(username),
         'username': username,
         'todo_form': todo_form,
@@ -54,16 +54,16 @@ def hello():
     if todo_form.is_submitted():
         put_todo(username,todo_form.description.data)
         flash('Tarea creada con éxito')
-        return redirect(url_for('hello'))
+        return redirect(url_for('home'))
   
-    return render_template('hello.html',**context) # Responder al usuario con su IP en un template HTML
+    return render_template('home.html',**context) # Responder al usuario con su IP en un template HTML
 # Rutas dinámicas
 @app.route('/todos/delete/<todo_id>', methods=['POST'])
 def delete(todo_id):
     username = current_user.id
     delete_todo(username, todo_id)
     
-    return redirect(url_for('hello'))
+    return redirect(url_for('home'))
 
 
 @app.route('/todos/update/<todo_id>/<int:done>', methods=['POST'])
@@ -71,4 +71,4 @@ def update(todo_id, done):
     username = current_user.id
     update_todo(username, todo_id, done)
     
-    return redirect(url_for('hello'))
+    return redirect(url_for('home'))

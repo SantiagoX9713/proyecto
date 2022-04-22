@@ -12,21 +12,19 @@
         <h1>Bienvenido {{username | capitalize}}</h1>
     {% endif %}
     <!-- Ahora accedemos normalmente a las variables -->
-    {% if user_ip%} <!-- Estructuras de control -->
-    <h3>Tu IP es {{user_ip}}</h3> <!-- Tomamos user_ip y lo mostramos en el template -->
-    {% else %}
-    <a href="{{url_for('index')}}">Ir al Inicio</a>
-    {% endif %}
     <!-- Aquì desplegamos el campo para crear nuevas tareas, debo de encontrar la manera de mantenerlo oculto hasta que
     haya un clic sobre un botón -->
     <div class="container">
         <h2>Crar una tarea</h2>
         {{wtf.quick_form(todo_form)}}
     </div>
-    <ul class="list-group">
-        {% for todo in todos %}
-            {{ macros.render_todo(todo, delete_form, update_form) }}
-        {% endfor %}
-    </ul>
+    <div>
+        <ul class="list-group">
+            {% for todo in todos %}
+                {{ macros.render_todo(todo, delete_form, update_form) }}
+            {% endfor %}
+        </ul>
+    
     </div>
+</div>
 {% endblock %}   

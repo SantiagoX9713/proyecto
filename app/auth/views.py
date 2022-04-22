@@ -31,7 +31,7 @@ def login():
             else:
                 flash('La información no coincide')
         else:
-            flash('Ese usuario no existe')
+            flash('Ese usuario no home')
 
         return redirect(url_for('index'))
    
@@ -52,7 +52,7 @@ def signup():
     context = {
         'signup_form':signup_form
     }
-# Revisamos si el usuario existe
+# Revisamos si el usuario home
     if signup_form.validate_on_submit():
         username = signup_form.username.data
         password = signup_form.password.data
@@ -69,6 +69,6 @@ def signup():
             return redirect(url_for('hello'))
 
         else:
-            flash('Ese usuario ya existe')
+            flash('Ese usuario ya home')
 
     return render_template('signup.html', **context)
