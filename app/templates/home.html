@@ -20,6 +20,11 @@
     </div>
     <div class="container">
         <h2>Lista de Tareas</h2>
+        <div class="progress">
+            <div class="progress-bar" role="progressbar" aria-valuenow="{{avance}}" aria-valuemin="0" aria-valuemax="100" style="width: {{avance}}%;">
+              {{avance}}%
+            </div>
+          </div>
         <ul class="list-group">
             {% for todo in todos %}
                 {{ macros.render_todo(todo, delete_form, update_form) }}

@@ -39,12 +39,15 @@ def index():
 def home():
     #user_ip = session.get('user_ip') #Leemos la session y obtenemos la IP
     username =  current_user.id
+    user_todos = get_todos(username)
+    avance = len(user_todos)
     todo_form = Todo()
     delete_form = DeleteTodoForm()
     update_form = UpdateTodoForm()
     context = {
         #'user_ip':user_ip,
-        'todos':get_todos(username),
+        'todos': user_todos,
+        'avance': avance,
         'username': username,
         'todo_form': todo_form,
         'delete_form': delete_form,

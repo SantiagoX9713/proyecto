@@ -27,7 +27,7 @@ def login():
                 user = UserModel(user_data)# Creamos un UserModel para que tenga las propiedades del UserMixin
                 login_user(user)
                 flash('Bienvenido de nuevo')
-                redirect('hello')
+                redirect('home')
             else:
                 flash('La información no coincide')
         else:
@@ -66,9 +66,9 @@ def signup():
             login_user(user)
             flash('Bienvenido')
 
-            return redirect(url_for('hello'))
+            return redirect(url_for('home'))
 
         else:
-            flash('Ese usuario ya home')
+            flash('Ese usuario ya existe')
 
     return render_template('signup.html', **context)
