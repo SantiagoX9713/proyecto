@@ -7,7 +7,7 @@
     {% endblock %}
 <!-- Bloques de contenido para poder mandarlo a un template padre -->
 {% block content %}
-    <div class="container">
+    <div class="container mt-3">
     {% if username %}
         <h1>Bienvenido {{username | capitalize}}</h1>
     {% endif %}
@@ -18,9 +18,9 @@
         <h2>Crar una tarea</h2>
         {{wtf.quick_form(todo_form)}}
     </div>
-    <div class="container">
+    <div class="container mt-3">
         <h2>Lista de Tareas</h2>
-        <div class="progress">
+        <div class="progress mb-4 mt-4">
             <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{advance}}" aria-valuemin="0" aria-valuemax="100" style="width: {{advance}}%;">
               {{advance}}%
             </div>
