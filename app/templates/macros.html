@@ -1,9 +1,9 @@
 {% import 'bootstrap/wtf.html' as wtf %}
 
 {% macro render_todo(todo, delete_form, update_form) %}
-    <li class="list-group-item row justify-content-end">
-        <span class="">Descripción: {{ todo.to_dict().description }}</span>
-        <div class="btn-group col-3" role="group" aria-label="...">
+    <li class="list-group-item">
+        Descripción: {{ todo.to_dict().description }}
+        <div class="btn-group" role="group" aria-label="...">
             <button type="button" class="btn btn-default">
                 {{ wtf.quick_form(delete_form, action=url_for('delete', todo_id=todo.id)) }}
             </button>

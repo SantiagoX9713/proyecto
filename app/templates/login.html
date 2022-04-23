@@ -5,8 +5,10 @@
     Login
 {% endblock %}
 {% block content %}
-<div class="container">
+<div class="container mt-4">
     {{wtf.quick_form(login_form)}}
+</div>
+<div class="container mt-4">
     <a href="{{url_for('auth.signup')}}">Registrarse</a>
 </div>
 {% endblock %}
