@@ -1,21 +1,21 @@
 {% import 'bootstrap/wtf.html' as wtf %}
 
 {% macro render_todo(todo, delete_form, update_form) %}
-    <li class="list-group-item">
-        Descripción: {{ todo.to_dict().description }}
-        <div class="btn-group" role="group" aria-label="...">
+    <li class="list-group-item d-flex">
+        <span class="mr-auto p-2">Descripción: {{ todo.to_dict().description }}</span>
+        <div class="btn-group p-2" role="group" aria-label="...">
             <button type="button" class="btn btn-default">
-                {{ wtf.quick_form(delete_form, action=url_for('delete', todo_id=todo.id)) }}
+                <a href="{{ url_for('delete', todo_id=todo.id) }}" class="btn d-inline-block btn-primary">Borrar</a>
             </button>
             <button type="button" class="btn btn-default">
                 <!-- Ejemplo de como no declarar el "formulario" para actualizar -->
-                <a href="{{ url_for('update', todo_id= todo.id, done=todo.to_dict().done) }}" class="btn d-inline-block btn-success">Update</a>
+                <a href="{{ url_for('update', todo_id=todo.id, done=todo.to_dict().done) }}" class="btn d-inline-block btn-success">Update</a>
             </button>
         </div>
             {%if todo.to_dict().done %}
-            <span class="badge badge-pill badge-success">Done</span>
+            <span class="badge badge-success">Done</span>
             {% else %}
-            <span class="badge badge-pill badge-warning">To do</span>
+            <span class="badge badge-warning">To do</span>
             {% endif %}
     </li>
 {% endmacro %}

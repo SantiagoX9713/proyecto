@@ -1,6 +1,5 @@
 import unittest
-from ensurepip import bootstrap
-from flask import flash, request,make_response,redirect,render_template,session,url_for # Importar Flask para poder trabajar con el
+from flask import flash, make_response,redirect,render_template, url_for # Importar Flask para poder trabajar con el
 from flask_login import current_user, login_required
 from app import create_app
 from app.forms import Todo, DeleteTodoForm
@@ -41,9 +40,7 @@ def user_advance(user_todos):
 
 @app.route('/') #Entrada a la app
 def index():
-    #user_ip = request.remote_addr #Obtener la IP del Usuario
     response = make_response(redirect('/home')) # Respuesta y redirección a home
-    #session['user_ip'] = user_ip # Mandamos un session con la IP
     return response
 
 
@@ -51,14 +48,12 @@ def index():
 # Protejemos la ruta con LoginRequired
 @login_required
 def home():
-    #user_ip = session.get('user_ip') #Leemos la session y obtenemos la IP
     username =  current_user.id
     user_todos = get_todos(username)
     advance = user_advance(user_todos)
     todo_form = Todo()
     delete_form = DeleteTodoForm()
     context = {
-        #'user_ip':user_ip,
         'todos': user_todos,
         'advance': advance,
         'username': username,
@@ -73,7 +68,7 @@ def home():
   
     return render_template('home.html',**context) # Responder al usuario con su IP en un template HTML
 # Rutas dinámicas
-@app.route('/todos/delete/<todo_id>', methods=['POST'])
+@app.route('/todos/delete/<todo_id>', methods=['GET', 'POST'])
 def delete(todo_id):
     username = current_user.id
     delete_todo(username, todo_id)
