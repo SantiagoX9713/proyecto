@@ -1,21 +1,25 @@
 {% import 'bootstrap/wtf.html' as wtf %}
 
 {% macro render_todo(todo, delete_form, update_form) %}
-    <li class="list-group-item d-flex">
-        <span class="mr-auto p-2">Descripción: {{ todo.to_dict().description }}</span>
-        <div class="btn-group p-2" role="group" aria-label="...">
-            <button type="button" class="btn btn-default">
-                <a href="{{ url_for('delete', todo_id=todo.id) }}" class="btn d-inline-block btn-primary">Borrar</a>
-            </button>
-            <button type="button" class="btn btn-default">
-                <!-- Ejemplo de como no declarar el "formulario" para actualizar -->
-                <a href="{{ url_for('update', todo_id=todo.id, done=todo.to_dict().done) }}" class="btn d-inline-block btn-success">Update</a>
-            </button>
-        </div>
+    <li class="list-group-item">
+        <div class="d-flex align-items-center">
+            <span class="mr-auto p-2">Descripción: {{ todo.to_dict().description }}</span>
+            <div class="btn-group p-2" role="group" aria-label="...">
+                <button type="button" class="btn btn-default">
+                    <a href="{{ url_for('delete', todo_id=todo.id) }}" class="btn d-inline-block btn-primary">Borrar</a>
+                </button>
+                <button type="button" class="btn btn-default">
+                    <!-- Ejemplo de como no declarar el "formulario" para actualizar -->
+                    <a href="{{ url_for('update', todo_id=todo.id, done=todo.to_dict().done) }}" class="btn d-inline-block btn-success">Update</a>
+                </button>
+            </div>
+            <div class="p-2">
             {%if todo.to_dict().done %}
-            <span class="badge badge-success">Done</span>
-            {% else %}
-            <span class="badge badge-warning">To do</span>
-            {% endif %}
+                <span class="badge badge-pill badge-success">Done</span>
+                {% else %}
+                <span class="badge badge-pill badge-warning">To do</span>
+                {% endif %}
+            </div>
+        </div>
     </li>
 {% endmacro %}
