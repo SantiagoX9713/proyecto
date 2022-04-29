@@ -82,3 +82,18 @@ def update(todo_id, done):
     update_todo(username, todo_id, done)
     
     return redirect(url_for('home'))
+
+
+@app.route('/visitas')
+def visitas():
+    return render_template('visitas.html')
+
+
+@app.route('/areas_comunes')
+def areas_comunes():
+    return render_template('areas_comunes.html')
+
+
+@app.route('/comunicacion')
+def comunicacion():
+    return render_template('comunicacion.html')

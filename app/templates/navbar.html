@@ -13,6 +13,12 @@
         <ul class="navbar-nav">
             {% if current_user.is_authenticated %}
             <li class="nav-item">
+                <a href="{{url_for('visitas')}}">Visitas</a>
+            </li>
+            <li class="nav-item">
+                <a href="{{url_for('areas_comunes')}}">Áreas Comunes</a>
+            </li>
+            <li class="nav-item">
                 <a href="{{url_for('auth.logout')}}">Logout</a>
             </li>
             {% endif %}
