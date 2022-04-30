@@ -1,5 +1,4 @@
-from crypt import methods
-from flask import render_template,flash,redirect,url_for,session
+from flask import render_template,flash,redirect,url_for,request
 from flask_login import login_user, login_required, logout_user
 from werkzeug.security import generate_password_hash, check_password_hash
 from app.forms import LoginForm, SignUp
@@ -33,7 +32,7 @@ def login():
         else:
             flash('Ese usuario no home')
 
-        return redirect(url_for('index'))
+        return redirect(request.args.get(next) or url_for('home'))
    
     return render_template('login.html',**context)
 

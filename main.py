@@ -69,6 +69,7 @@ def home():
     return render_template('home.html',**context) # Responder al usuario con su IP en un template HTML
 # Rutas dinámicas
 @app.route('/todos/delete/<todo_id>', methods=['GET', 'POST'])
+@login_required
 def delete(todo_id):
     username = current_user.id
     delete_todo(username, todo_id)
@@ -77,6 +78,7 @@ def delete(todo_id):
 
 
 @app.route('/todos/update/<todo_id>/<int:done>', methods=['GET','POST'])
+@login_required
 def update(todo_id, done):
     username = current_user.id
     update_todo(username, todo_id, done)
@@ -85,15 +87,18 @@ def update(todo_id, done):
 
 
 @app.route('/visitas')
+@login_required
 def visitas():
     return render_template('visitas.html')
 
 
 @app.route('/areas_comunes')
+@login_required
 def areas_comunes():
     return render_template('areas_comunes.html')
 
 
 @app.route('/comunicacion')
+@login_required
 def comunicacion():
     return render_template('comunicacion.html')
