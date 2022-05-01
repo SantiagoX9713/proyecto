@@ -102,3 +102,5 @@ def areas_comunes():
 @login_required
 def comunicacion():
     return render_template('comunicacion.html')
+
+    # Para el commit
