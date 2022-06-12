@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "deploy-flask-app",
+  "private_key_id": "fff428131e9a5ec5d53117359653198c0cf687fa",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQC3Y40WfD6VvIiu\naB9B5ctPwPaMtgUjAT+bf/Oc0j/DA3KERnIe6iRTgYeL/zif93At4Q3K4VyCAKtc\n7UcKYGzlRshRm24nppC0+FrV5EsQRI9GCcuQ3KDisNwaCrftmdRIG6pzm/ROO/f0\nmhicQJM3W1Bx4KNhCCAX0I3lGjrzoIQZo/lxI6cEjq+vtc5AmAXW1JtwaV14rMGl\nW1qKpgpHbiZuOCJz3KmgXmH8EYQfwc0oezYi9Bs/Ry4YbK2ZlAsZcheQbY5wZFDH\nlpEdV8F5QGO489qZnYrE5S7+vV1Y/YfDlxDpCR5aQ48BLZHcEiCbsKks3/xKewjw\nD5BazBlnAgMBAAECggEAS0s8xKQbYAgJyC2o07oA2QxdTdV303DySCpm/5aVJkC2\nlleECGxSoNR4LgMKISeK79NMgeU4QYn70Yn8FmcTnqkKmvLpba8mD58+UD5MkW/M\nsVFZOm9TQO+jVq/a51s2vKpbN98qlapqeguAmjqrFtnPdAnqmm6nGo/+ijdUR+0H\nysSf4OZnJA1NFntnh6IXgCFtKDw5dywqq0OY7e8yOMnQn31yXNHiI9k5rXjW7zaQ\nf23R+uukSh+HssSQ2YphwuA++9yQcanBbQO42Lp46LjUg+vTEnv83jtY5K/7ZPzd\nP03BA7Fb1eMmRG2q94LiDfKUoQkZUypn1Qm0fiaDMQKBgQDlR7ZmtCmXQ2Uw6VnV\nYBp3p4Rn2MGU656I8a0OsQWlCjQv8BRs6y5PJJ/baRwXPDdo1Sk7hIjFpIG2W2W3\nVM4z1mx3gSs7GvwIZKxwZ/Q+1FSbRYj5fGcUj+tGkuuGvgGF2JOWaGRelKOkJf2H\nCCOWciFazd8M+QHnTEooAvAG8QKBgQDMwrrmW2+Ryxmf2QuEKtnvkZvREV6/Ju4h\nzCJdvbOX6BIBLJRUIYqYXY/m1enxV+Ir6DUuRLliyKea0F8eSKlwQB2H2tJhR3LE\nNGr5NOJBaysWYNVRcaFs1pb6ti7RjvhtjwWgLIuKkllE5/wWQKfDjFCKgiuWd/Im\nhV+QWeyV1wKBgGM/nKxuloZc7SO0D2f3Ft3uzLjrMjjVmaWr//6ZEFl1xktuAFl5\noG0v7Gbc5AUG0vF1PEkAQPhVErUucSRf+Hal/gPpDR6juq+jbKWnyimcXhdsjTN5\n72EOP4koNf34p84ZhyGXhMMQUpnOvCVEl6sbMmcNMN17uKA3/O2+/8nxAoGABtBw\nMdxXIS32I1iwxmw6pntdCR8f3RKpmBxYBHCcunBxsPJP2WDoYNu0P0VdLLf1AesP\nYgPNe5kb4s4ObE6UvPSVRwEkQTKEgj0QVkzJPs4XN/5u+u/iJGIb0iof8r9kSxkY\nYdU5q5nlOKLTw9XQ/3P69jEQzEgfmeKUZJRpiC8CgYAX2qyRWsPXJ/3T2B+YeK/u\nQVQe9vD5Glckq3l4Bsj0lO30gne7lDVtMk+ogt8Ak0CWbalvj0p0yf/UsGJLgTO3\n4N3RWmewLh38N1eJhGCyja0ifczFrga3BxIEiQaYDKw0XTMwh202ukFbZqZ3RDl8\neGWMaFbMD6yk5rl5s42MfQ==\n-----END PRIVATE KEY-----\n",
+  "client_email": "deploy-flask-app@appspot.gserviceaccount.com",
+  "client_id": "101236786711185544846",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/deploy-flask-app%40appspot.gserviceaccount.com"
+}
