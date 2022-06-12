@@ -1,3 +1,4 @@
 class Config:
     SECRET_KEY = 'SUPER_SECRET'
     PRESERVE_CONTEXT_ON_EXCEPTION = False
+    WTF_CSRF_ENABLED = True

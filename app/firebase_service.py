@@ -1,4 +1,6 @@
+from datetime import datetime
 import firebase_admin
+from google.cloud import firestore
 from firebase_admin import credentials
 from firebase_admin import firestore
 
@@ -21,7 +23,7 @@ def put_user(user_data):
 
 # Para obtener los todos del usuario user_id
 def get_todos(user_id):
-    return db.collection('users').document(user_id).collection('todos').get()
+    return db.collection('users').document(user_id).collection('todos').order_by('creation',direction=firestore.Query.DESCENDING).get()
 # collection() para saber a que coleccion entrar y después obtener
 # los documentos todos y con get() traemos toda la colección
 
@@ -29,7 +31,11 @@ def get_todos(user_id):
 def put_todo(user_id, description):
     todos_collection_ref = db.collection('users').document(user_id).collection('todos')
     # Datazo: para crear un documento y no poner atención al id es con add, de lo contrario usamos set como en la línea 19
-    todos_collection_ref.add({'description': description, 'done': False})
+    todos_collection_ref.add({
+        'description': description,
+        'done': False,
+        'creation': datetime.now()
+        })
 
 
 def delete_todo(user_id, todo_id):
