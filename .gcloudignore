@@ -13,6 +13,7 @@
 .git
 .gitignore
 mientorno/
+qr-venv/
 2doentorno/
 # Python pycache:
 __pycache__/
