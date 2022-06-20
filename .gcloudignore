@@ -13,10 +13,10 @@
 .git
 .gitignore
 mientorno/
-qr-venv/
+qr_venv/
 2doentorno/
 # Python pycache:
 __pycache__/
 # Ignored by the build system
 /setup.cfg
-deploy-flask-app-65374745c703.json
+*.json

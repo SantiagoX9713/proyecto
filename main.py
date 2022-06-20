@@ -1,6 +1,5 @@
-from statistics import mode
 import unittest
-from flask_qr import QR
+from flask_qrcode import QRcode
 from flask import flash, make_response,redirect,render_template, url_for # Importar Flask para poder trabajar con el
 from flask_login import current_user, login_required
 from app import create_app
@@ -8,7 +7,7 @@ from app.forms import Todo, DeleteTodoForm
 from app.firebase_service import get_todos, put_todo, delete_todo, update_todo
 
 app = create_app() #Crear la app
-qr = QR(app, mode="google")
+QRcode(app)
 
 @app.cli.command()
 def test():
