@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms.fields import StringField, PasswordField, SubmitField
+from wtforms.fields import StringField, PasswordField, SubmitField, DateField, HiddenField
 from wtforms.validators import DataRequired, EqualTo, InputRequired
 
 
@@ -24,3 +24,9 @@ class Todo(FlaskForm):
 
 class DeleteTodoForm(FlaskForm):
     submit = SubmitField('Borrar')
+
+
+class CreateVisit():
+    date = DateField('Fecha de Visita')
+    visitors = StringField('Visitante(s)')
+    hashed_fields = HiddenField('Campos hasheados')

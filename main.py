@@ -1,9 +1,10 @@
+from multiprocessing import context
 import unittest
 from flask_qrcode import QRcode
 from flask import flash, make_response,redirect,render_template, url_for # Importar Flask para poder trabajar con el
 from flask_login import current_user, login_required
 from app import create_app
-from app.forms import Todo, DeleteTodoForm
+from app.forms import Todo, DeleteTodoForm, CreateVisit
 from app.firebase_service import get_todos, put_todo, delete_todo, update_todo
 
 app = create_app() #Crear la app
@@ -90,6 +91,10 @@ def update(todo_id, done):
 @app.route('/visitas')
 @login_required
 def visitas():
+    visit = CreateVisit()
+    context = {
+        'visit': visit
+    }
     return render_template('visitas.html')
 
 

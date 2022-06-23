@@ -19,14 +19,14 @@ class MainTest(TestCase):
 
     def test_index_redirects(self):
         response = self.client.get(url_for('index'))
-        self.assertRedirects(response,url_for('hello'))
+        self.assertRedirects(response,url_for('home'))
 
     def test_hello_get(self):
-        response = self.client.get(url_for('hello'))
+        response = self.client.get(url_for('home'))
         self.assert200(response)
 
     def test_hello_post(self):
-        response = self.client.post(url_for('hello'))
+        response = self.client.post(url_for('home'))
         self.assertTrue(response.status_code, 405)
 
 
