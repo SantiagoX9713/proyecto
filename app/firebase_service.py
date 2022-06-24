@@ -52,3 +52,10 @@ def update_todo(user_id, todo_id, done):
 def _get_ref(user_id, todo_id):
     return db.document('users/{}/todos/{}'.format(user_id, todo_id))
     
+
+def put_visit(user_id, visit_date, visitor):
+    visits_collection_ref = db.collection('users').document(user_id).collection('visits')
+    visits_collection_ref.add({
+        'date':visit_date,
+        'visitor': visitor
+    })

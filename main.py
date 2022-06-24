@@ -5,7 +5,7 @@ from flask import flash, make_response,redirect,render_template, url_for # Impor
 from flask_login import current_user, login_required
 from app import create_app
 from app.forms import Todo, DeleteTodoForm, CreateVisit
-from app.firebase_service import get_todos, put_todo, delete_todo, update_todo
+from app.firebase_service import get_todos, put_todo, delete_todo, update_todo, put_visit
 
 app = create_app() #Crear la app
 QRcode(app)
@@ -91,11 +91,16 @@ def update(todo_id, done):
 @app.route('/visitas')
 @login_required
 def visitas():
-    visit = CreateVisit()
+    visit_form = CreateVisit()
     context = {
-        'visit': visit
+        'visit': visit_form
     }
-    return render_template('visitas.html')
+    if visit_form.is_submitted():
+        put_visit(current_user.id,visit_form.date.data, visit_form.visitor.data)
+        return render_template('visitas.html')#Tenemos que mandar los datos recién capturados y hasear para manadar el qr
+        
+    return render_template('visitas.html', **context)
+
 
 
 @app.route('/areas_comunes')
@@ -108,5 +113,3 @@ def areas_comunes():
 @login_required
 def comunicacion():
     return render_template('comunicacion.html')
-
-    # Para el commit
