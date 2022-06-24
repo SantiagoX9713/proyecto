@@ -88,16 +88,17 @@ def update(todo_id, done):
     return redirect(url_for('home'))
 
 
-@app.route('/visitas')
+@app.route('/visitas',methods=['GET', 'POST'])
 @login_required
 def visitas():
     visit_form = CreateVisit()
     context = {
-        'visit': visit_form
+        'visit_form': visit_form
     }
     if visit_form.is_submitted():
         put_visit(current_user.id,visit_form.date.data, visit_form.visitor.data)
-        return render_template('visitas.html')#Tenemos que mandar los datos recién capturados y hasear para manadar el qr
+        flash('Visita creada con éxito')#Tenemos que mandar los datos recién capturados y hasear para manadar el qr
+        return redirect(url_for('visitas'))
         
     return render_template('visitas.html', **context)
 
