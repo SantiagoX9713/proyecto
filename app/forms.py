@@ -28,7 +28,7 @@ class DeleteTodoForm(FlaskForm):
 
 
 class CreateVisit(FlaskForm):
-    date = DateField('Fecha de Visita', validators=[DataRequired()])
+    date = DateField('Fecha de Visita', validators=[DataRequired()], format='%d-%m-%Y')
     visitor = StringField('Visitante(s)', validators=[DataRequired()], render_kw={"placeholder": "Nombre del o los visitantes."})
     hashed_fields = HiddenField('Campos hasheados')
     submit = SubmitField('Enviar')

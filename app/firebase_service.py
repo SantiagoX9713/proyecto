@@ -60,3 +60,6 @@ def put_visit(user_id, visit_date, visitor, hashed_fields):
         'visitor': visitor,
         'hash': hashed_fields
     })
+
+def get_visits(user_id):
+    return db.collection('users').document(user_id).collection('visits').get()

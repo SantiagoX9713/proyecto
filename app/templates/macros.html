@@ -23,3 +23,14 @@
         </div>
     </li>
 {% endmacro %}
+
+{% macro render_visit(visit) %}
+    <li class="list-group-item">
+        <div class="d-flex align-items-center">
+            <span class="mr-auto p-2">Visitante: {{ visit.to_dict().visitor }} Fecha: {{ visit.to_dict().date.strftime('%d-%m-%Y') }}</span>
+        </div>
+        <div class="container mt-3">
+            <img src="{{ qrcode('https://deploy-flask-app.ue.r.appspot.com/visitas/' + visit.to_dict().hash, box_size=20, border=5)  }} " style="max-width: 150px">
+        </div>
+    </li>
+{% endmacro %}

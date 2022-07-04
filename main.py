@@ -7,7 +7,7 @@ from flask import flash, make_response,redirect,render_template, url_for # Impor
 from flask_login import current_user, login_required
 from app import create_app
 from app.forms import Todo, DeleteTodoForm, CreateVisit
-from app.firebase_service import get_todos, put_todo, delete_todo, update_todo, put_visit
+from app.firebase_service import get_todos, put_todo, delete_todo, update_todo, put_visit, get_visits
 
 app = create_app() #Crear la app
 QRcode(app)
@@ -94,16 +94,19 @@ def update(todo_id, done):
 @app.route('/visitas',methods=['GET', 'POST'])
 @login_required
 def visitas():
+    username = current_user.id
+    user_visits = get_visits(username)
     visit_form = CreateVisit()
     context = {
-        'visit_form': visit_form
+        'visit_form': visit_form,
+        'visits': user_visits
     }
     if visit_form.is_submitted():
         dt = datetime.combine(visit_form.date.data, datetime.now().time())
         hashed_fields = hashing.hash_value(str(dt) + current_user.id, salt='flask-app')
         print(str(dt))
         print(hashed_fields)
-        put_visit(current_user.id,dt, visit_form.visitor.data, hashed_fields)
+        put_visit(username,dt, visit_form.visitor.data, hashed_fields)
         flash('Visita creada con éxito')#Tenemos que mandar los datos recién capturados y hashear para manadar el qr
         return redirect(url_for('visitas'))
         
