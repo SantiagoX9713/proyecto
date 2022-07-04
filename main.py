@@ -1,6 +1,8 @@
+from datetime import time, datetime
 from multiprocessing import context
 import unittest
 from flask_qrcode import QRcode
+from flask_hashing import Hashing
 from flask import flash, make_response,redirect,render_template, url_for # Importar Flask para poder trabajar con el
 from flask_login import current_user, login_required
 from app import create_app
@@ -9,6 +11,7 @@ from app.firebase_service import get_todos, put_todo, delete_todo, update_todo, 
 
 app = create_app() #Crear la app
 QRcode(app)
+hashing = Hashing(app)
 
 @app.cli.command()
 def test():
@@ -96,8 +99,12 @@ def visitas():
         'visit_form': visit_form
     }
     if visit_form.is_submitted():
-        put_visit(current_user.id,visit_form.date.data, visit_form.visitor.data)
-        flash('Visita creada con éxito')#Tenemos que mandar los datos recién capturados y hasear para manadar el qr
+        dt = datetime.combine(visit_form.date.data, datetime.now().time())
+        hashed_fields = hashing.hash_value(str(dt) + current_user.id, salt='flask-app')
+        print(str(dt))
+        print(hashed_fields)
+        put_visit(current_user.id,dt, visit_form.visitor.data, hashed_fields)
+        flash('Visita creada con éxito')#Tenemos que mandar los datos recién capturados y hashear para manadar el qr
         return redirect(url_for('visitas'))
         
     return render_template('visitas.html', **context)

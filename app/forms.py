@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 # from wtforms.widgets import DateTimeInput
-from wtforms.fields import StringField, PasswordField, SubmitField, DateTimeField, HiddenField
+from wtforms.fields import StringField, PasswordField, SubmitField, DateField, HiddenField
 from wtforms.validators import DataRequired, EqualTo, InputRequired
 
 
@@ -28,7 +28,7 @@ class DeleteTodoForm(FlaskForm):
 
 
 class CreateVisit(FlaskForm):
-    date = DateTimeField('Fecha de Visita', validators=[DataRequired()])
-    visitor = StringField('Visitante(s)', validators=[DataRequired()])
-#    hashed_fields = HiddenField('Campos hasheados')
+    date = DateField('Fecha de Visita', validators=[DataRequired()])
+    visitor = StringField('Visitante(s)', validators=[DataRequired()], render_kw={"placeholder": "Nombre del o los visitantes."})
+    hashed_fields = HiddenField('Campos hasheados')
     submit = SubmitField('Enviar')
