@@ -13,6 +13,7 @@ app = create_app() #Crear la app
 QRcode(app)
 hashing = Hashing(app)
 
+
 @app.cli.command()
 def test():
     tests = unittest.TestLoader().discover('tests')
