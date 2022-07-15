@@ -32,3 +32,6 @@ class CreateVisit(FlaskForm):
     visitor = StringField('Visitante(s)', validators=[DataRequired()], render_kw={"placeholder": "Nombre del o los visitantes."})
     hashed_fields = HiddenField('Campos hasheados')
     submit = SubmitField('Enviar')
+
+class DeleteVisit(FlaskForm):
+    submit = SubmitField('Cancelar')
