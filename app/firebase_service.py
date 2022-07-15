@@ -40,17 +40,17 @@ def put_todo(user_id, description):
 
 def delete_todo(user_id, todo_id):
     #todo_ref = db.collection('users').document(user_id).collection('todos').document(todo_id)
-    todo_ref = _get_ref(user_id, todo_id)
+    todo_ref = _get_ref(user_id, 'todo', todo_id)
     todo_ref.delete()
 
 def update_todo(user_id, todo_id, done):
     todo_done = not bool(done)
-    todo_ref = _get_ref(user_id, todo_id)
+    todo_ref = _get_ref(user_id, 'todo', todo_id)
     todo_ref.update({'done': todo_done})
 
-
-def _get_ref(user_id, todo_id):
-    return db.document('users/{}/todos/{}'.format(user_id, todo_id))
+# Switch para accceso a colección de primer segundo nivel 
+def _get_ref(user_id, collection, document_id):
+    return db.document(f'users/{user_id}/{collection}/{document_id}')
     
 
 def put_visit(user_id, visit_date, visitor, hashed_fields):
@@ -63,3 +63,8 @@ def put_visit(user_id, visit_date, visitor, hashed_fields):
 
 def get_visits(user_id):
     return db.collection('users').document(user_id).collection('visits').get()
+
+
+def delete_visit(user_id, visit_id):
+    visit_ref = _get_ref(user_id, 'visits', visit_id)
+    visit_ref.delete()
