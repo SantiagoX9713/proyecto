@@ -45,7 +45,7 @@ def delete_todo(user_id, todo_id):
 
 def update_todo(user_id, todo_id, done):
     todo_done = not bool(done)
-    todo_ref = _get_ref(user_id, 'todo', todo_id)
+    todo_ref = _get_ref(user_id, 'todos', todo_id)
     todo_ref.update({'done': todo_done})
 
 # Switch para accceso a colección de primer segundo nivel 
@@ -58,7 +58,8 @@ def put_visit(user_id, visit_date, visitor, hashed_fields):
     visits_collection_ref.add({
         'date':visit_date,
         'visitor': visitor,
-        'hash': hashed_fields
+        'hash': hashed_fields,
+        'locked': False
     })
 
 def get_visits(user_id):

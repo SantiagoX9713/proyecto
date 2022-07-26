@@ -32,7 +32,7 @@
         <div class="container mt-3">
             <img src="{{ qrcode('https://deploy-flask-app.ue.r.appspot.com/visitas/' + visit.to_dict().hash, box_size=20, border=5)  }} " style="max-width: 150px">
             <button type="button" class="btn btn-default">
-                    <a href="{{ url_for('delete_visit', visit_id=visit.id) }}" class="btn d-inline-block btn-primary">Cancelar</a>
+                    <a href="{{ url_for('delete_visits', visit_id=visit.id) }}" class="btn d-inline-block btn-primary">Cancelar</a>
                 </button>
         </div>
     </li>
