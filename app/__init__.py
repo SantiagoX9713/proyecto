@@ -10,12 +10,15 @@ login_manager = LoginManager()
 login_manager.login_view = 'auth.login'
 
 # Modelo de user
+
+
 @login_manager.user_loader
 def load_user(username):
     return UserModel.query(username)
 
+
 def create_app():
-    app = Flask(__name__) #Crear la app
+    app = Flask(__name__)  # Crear la app
     bootstrap = Bootstrap(app)
     app.config.from_object(Config)
     # Inicialicamos la app con el LoginManager

@@ -1,6 +1,7 @@
 from flask_login import UserMixin
 from .firebase_service import get_user
 
+
 class UserData:
     def __init__(self, username, password):
         self.username = username
@@ -15,5 +16,5 @@ class UserModel(UserMixin):
     @staticmethod
     def query(user_id):
         user_doc = get_user(user_id)
-        user_data = UserData(user_doc.id,user_doc.to_dict()['password'])
+        user_data = UserData(user_doc.id, user_doc.to_dict()['password'])
         return UserModel(user_data)
