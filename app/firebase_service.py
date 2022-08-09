@@ -21,7 +21,10 @@ def get_user(user_id):
 # Crear docuemento users
 def put_user(user_data):
     user_ref = db.collection('users').document(user_data.username)
-    user_ref.set({'password': user_data.password})
+    user_ref.set({
+        'password': user_data.password,
+        'profile': user_data.profile
+        })
 
 # Para obtener los todos del usuario user_id
 

@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 # from wtforms.widgets import DateTimeInput
-from wtforms.fields import StringField, PasswordField, SubmitField, DateField, HiddenField
+from wtforms.fields import StringField, PasswordField, SubmitField, DateField, HiddenField, SelectField
 from wtforms.validators import DataRequired, EqualTo, InputRequired
 
 
@@ -18,6 +18,16 @@ class SignUp(FlaskForm):
                              DataRequired(), InputRequired(), EqualTo('password')])
     password_repeat = PasswordField('Repite tu Password', validators=[
                                     DataRequired(), InputRequired()])
+    submit = SubmitField('Enviar')
+
+
+class CreateUser(FlaskForm):
+    username = StringField('Nombre de Usuario', validators=[DataRequired()])
+    password = PasswordField('Password', validators=[
+                             DataRequired(), InputRequired(), EqualTo('password')])
+    password_repeat = PasswordField('Repite tu Password', validators=[
+                                    DataRequired(), InputRequired()])
+    profile = SelectField('Perfil del Usuario', validators=[DataRequired()], choices=[('admin', 'Administrador'),('common', 'Comun')])
     submit = SubmitField('Enviar')
 
 

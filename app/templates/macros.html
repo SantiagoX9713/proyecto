@@ -1,39 +1,54 @@
 {% import 'bootstrap/wtf.html' as wtf %}
 
 {% macro render_todo(todo, delete_form, update_form) %}
-    <li class="list-group-item">
-        <div class="d-flex align-items-center">
-            <span class="mr-auto p-2">Descripción: {{ todo.to_dict().description }}</span>
-            <div class="btn-group p-2" role="group" aria-label="...">
-                <button type="button" class="btn btn-default">
-                    <a href="{{ url_for('delete_todos', todo_id=todo.id) }}" class="btn d-inline-block btn-primary">Borrar</a>
-                </button>
-                <button type="button" class="btn btn-default">
-                    <!-- Ejemplo de como no declarar el "formulario" para actualizar -->
-                    <a href="{{ url_for('update_todos', todo_id=todo.id, done=todo.to_dict().done) }}" class="btn d-inline-block btn-success">Update</a>
-                </button>
-            </div>
-            <div class="p-2">
-            {%if todo.to_dict().done %}
-                <span class="badge badge-pill badge-success">Done</span>
-                {% else %}
-                <span class="badge badge-pill badge-warning">To do</span>
-                {% endif %}
-            </div>
+<li class="list-group-item">
+    <div class="d-flex align-items-center">
+        <span class="mr-auto p-2">Descripción: {{ todo.to_dict().description }}</span>
+        <div class="btn-group p-2" role="group" aria-label="...">
+            <button type="button" class="btn btn-default">
+                <a href="{{ url_for('delete_todos', todo_id=todo.id) }}"
+                    class="btn d-inline-block btn-primary">Borrar</a>
+            </button>
+            <button type="button" class="btn btn-default">
+                <!-- Ejemplo de como no declarar el "formulario" para actualizar -->
+                <a href="{{ url_for('update_todos', todo_id=todo.id, done=todo.to_dict().done) }}"
+                    class="btn d-inline-block btn-success">Update</a>
+            </button>
         </div>
-    </li>
+        <div class="p-2">
+            {% if todo.to_dict().done %}
+            <span class="badge badge-pill badge-success">Done</span>
+            {% else %}
+            <span class="badge badge-pill badge-warning">To do</span>
+            {% endif %}
+        </div>
+    </div>
+</li>
 {% endmacro %}
 
 {% macro render_visit(visit) %}
-    <li class="list-group-item">
-        <div class="d-flex align-items-center">
-            <span class="mr-auto p-2">Visitante: {{ visit.to_dict().visitor }} Fecha: {{ visit.to_dict().date.strftime('%d-%m-%Y') }}</span>
-        </div>
-        <div class="container mt-3">
-            <img src="{{ qrcode('https://deploy-flask-app.ue.r.appspot.com/visitas/' + visit.to_dict().hash, box_size=20, border=5)  }} " style="max-width: 150px">
-            <button type="button" class="btn btn-default">
-                    <a href="{{ url_for('delete_visits', visit_id=visit.id) }}" class="btn d-inline-block btn-primary">Cancelar</a>
-                </button>
-        </div>
-    </li>
+{% if visit.to_dict().locked == False %}
+
+<li class="list-group-item">
+    <div class="d-flex align-items-center">
+        <span class="mr-auto p-2">Visitante: {{ visit.to_dict().visitor }} Fecha: {{
+            visit.to_dict().date.strftime('%d-%m-%Y') }}</span>
+    </div>
+    <div class="container mt-3">
+        <img src="{{ qrcode('https://deploy-flask-app.ue.r.appspot.com/visitas/' + visit.to_dict().hash, box_size=20, border=5)  }} "
+            style="max-width: 150px">
+        <button type="button" class="btn btn-default">
+            <a href="{{ url_for('delete_visits', visit_id=visit.id) }}"
+                class="btn d-inline-block btn-primary">Cancelar</a>
+        </button>
+    </div>
+    <div class="p-2">
+        {%if visit.to_dict().locked %}
+        <span class="badge badge-pill badge-warning">Cerrada</span>
+        {% else %}
+        <span class="badge badge-pill badge-success">Abierta</span>
+        {% endif %}
+    </div>
+</li>
+{% endif %}
 {% endmacro %}

@@ -73,6 +73,7 @@ def home():
         return redirect(url_for('home'))
 
     # Responder al usuario con su IP en un template HTML
+    
     return render_template('home.html', **context)
 # Rutas dinámicas
 
